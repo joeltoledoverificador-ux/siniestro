@@ -1,0 +1,45 @@
+Tipo,Valor
+COMPAÑÍAS,AXA
+COMPAÑÍAS,Zurich
+COMPAÑÍAS,Allianz
+COMPAÑÍAS,Mapfre
+COMPAÑÍAS,Seguros Monterrey
+LOCALIDADES,Buenos Aires
+LOCALIDADES,Córdoba
+LOCALIDADES,Rosario
+LOCALIDADES,Mendoza
+LOCALIDADES,La Plata
+LOCALIDADES,Mar del Plata
+TAREAS,Pendiente contacto
+TAREAS,Contactado
+TAREAS,Coordinar visita
+TAREAS,Visitar asegurado
+TAREAS,Cargar informe
+TAREAS,Informe elevado
+TAREAS,Retiro de denuncia
+TAREAS,Pendientes de datos
+TAREAS,Otra tarea
+ESTADOS,Pendiente análisis
+ESTADOS,Contactar
+ESTADOS,Aguardamos respuestas
+ESTADOS,Coordinar visita
+ESTADOS,Con visita pactada
+ESTADOS,Pendientes de datos
+ESTADOS,Cargar informe
+ESTADOS,Informes elevados
+ESTADOS,Retiro denuncia
+ESTADOS,Cerrados
+PRIORIDAD,Alta
+PRIORIDAD,Media
+PRIORIDAD,Baja
+RESPONSABLES,Joel
+RESPONSABLES,María García
+RESPONSABLES,Juan López
+ESTADOS_VISITA,Pactada
+ESTADOS_VISITA,Realizada
+ESTADOS_VISITA,Reprogramada
+ESTADOS_VISITA,Cancelada
+ESTADOS_VISITA,No realizada
+ESTADO_PAGO,Pagado
+ESTADO_PAGO,Pendiente
+ESTADO_PAGO,Por Generar
