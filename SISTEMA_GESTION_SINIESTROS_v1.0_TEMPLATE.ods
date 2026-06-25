@@ -1,0 +1,281 @@
+[Document]
+DocumentType=spreadsheet
+Version=1.0
+
+[Table1]
+Name=Dashboard
+SheetRealName=Dashboard
+
+[Table2]
+Name=Siniestros
+SheetRealName=Siniestros
+
+[Table3]
+Name=Seguimiento
+SheetRealName=Seguimiento
+
+[Table4]
+Name=Visitas
+SheetRealName=Visitas
+
+[Table5]
+Name=Finanzas
+SheetRealName=Finanzas
+
+[Table6]
+Name=Ficha_Consulta
+SheetRealName=Ficha_Consulta
+
+[Table7]
+Name=Listas
+SheetRealName=Listas
+
+; ========================================
+; HOJA 1: DASHBOARD
+; ========================================
+
+[Dashboard_Data]
+A1=ALERTAS OPERATIVAS
+A2=Tareas Vencidas
+B2==CONTAR.SI.CONJUNTO(Siniestros.H:H,"<>Cerrados",Siniestros.K:K,"<"&HOY())
+A3=Visitas para Hoy
+B3==CONTAR.SI(Visitas.E:E,HOY())
+A4=Visitas Próximos 7 Días
+B4==CONTAR.SI.CONJUNTO(Visitas.E:E,">"&HOY(),Visitas.E:E,"<="&HOY()+7)
+
+A7=MÉTRICAS DE SINIESTROS
+A8=Pendiente análisis
+B8==CONTAR.SI(Siniestros.H:H,"Pendiente análisis")
+A9=Contactar
+B9==CONTAR.SI(Siniestros.H:H,"Contactar")
+A10=Aguardamos respuestas
+B10==CONTAR.SI(Siniestros.H:H,"Aguardamos respuestas")
+A11=Coordinar visita
+B11==CONTAR.SI(Siniestros.H:H,"Coordinar visita")
+A12=Con visita pactada
+B12==CONTAR.SI(Siniestros.H:H,"Con visita pactada")
+A13=Pendientes de datos
+B13==CONTAR.SI(Siniestros.H:H,"Pendientes de datos")
+A14=Cargar informe
+B14==CONTAR.SI(Siniestros.H:H,"Cargar informe")
+A15=Informes elevados
+B15==CONTAR.SI(Siniestros.H:H,"Informes elevados")
+A16=Retiro denuncia
+B16==CONTAR.SI(Siniestros.H:H,"Retiro denuncia")
+A17=Cerrados
+B17==CONTAR.SI(Siniestros.H:H,"Cerrados")
+A18=Total Siniestros
+B18==CONTAR.A(Siniestros.A:A)-1
+
+A20=MÉTRICAS DE VISITAS
+A21=Pactada
+B21==CONTAR.SI(Visitas.H:H,"Pactada")
+A22=Realizada
+B22==CONTAR.SI(Visitas.H:H,"Realizada")
+A23=Reprogramada
+B23==CONTAR.SI(Visitas.H:H,"Reprogramada")
+A24=Cancelada
+B24==CONTAR.SI(Visitas.H:H,"Cancelada")
+A25=No realizada
+B25==CONTAR.SI(Visitas.H:H,"No realizada")
+
+A28=KPIs FINANCIEROS
+A29=Por Generar
+B29==SUMAR.SI(Finanzas.G:G,"Por Generar",Finanzas.E:E)
+A30=Ingresos del Mes
+B30==SUMAR.SI.CONJUNTO(Finanzas.E:E,Finanzas.G:G,"Pagado",Finanzas.E:E,">="&FECHA(AÑO(HOY()),MES(HOY()),1),Finanzas.E:E,"<="&FIN.MES(HOY(),0))
+A32=Análisis Generado
+C32==HOY()
+
+; ========================================
+; HOJA 2: SINIESTROS
+; ========================================
+
+[Siniestros_Headers]
+A1=ID Siniestro
+B1=Asegurado
+C1=Compañía
+D1=Localidad
+E1=Fecha Siniestro
+F1=Fecha Ingreso
+G1=Tarea a Realizar
+H1=Estado
+I1=Prioridad
+J1=Responsable
+K1=Fecha Límite
+L1=Días Pendientes
+M1=Comentarios
+
+[Siniestros_Formulas]
+L2==SI(H2="Cerrados","",K2-HOY())
+
+; ========================================
+; HOJA 3: SEGUIMIENTO
+; ========================================
+
+[Seguimiento_Headers]
+A1=ID Siniestro
+B1=Asegurado
+C1=Fecha Registro
+D1=Responsable
+E1=Acción Realizada
+F1=Próxima Acción
+G1=Fecha Próxima Acción
+H1=Estado Resultante
+
+[Seguimiento_Formulas]
+B2==SI.ERROR(BUSCARV(A2,Siniestros.A:C,2,FALSO),"")
+
+; ========================================
+; HOJA 4: VISITAS
+; ========================================
+
+[Visitas_Headers]
+A1=ID Siniestro
+B1=Asegurado
+C1=Compañía
+D1=Localidad
+E1=Fecha Pactada
+F1=Horario
+G1=Inspector
+H1=Estado Visita
+I1=Fecha Real Visita
+J1=Diferencia Días
+K1=Comentario Visita
+
+[Visitas_Formulas]
+B2==SI.ERROR(BUSCARV(A2,Siniestros.A:B,2,FALSO),"")
+C2==SI.ERROR(BUSCARV(A2,Siniestros.A:C,3,FALSO),"")
+D2==SI.ERROR(BUSCARV(A2,Siniestros.A:D,4,FALSO),"")
+J2==SI(I2="","",I2-E2)
+
+; ========================================
+; HOJA 5: FINANZAS
+; ========================================
+
+[Finanzas_Headers]
+A1=ID Siniestro
+B1=Asegurado
+C1=Compañía
+D1=Estado Actual
+E1=Valor Siniestro
+F1=Costo Informe
+G1=Estado Pago
+
+[Finanzas_Formulas]
+B2==BUSCARV(A2,Siniestros.A:B,2,FALSO)
+C2==BUSCARV(A2,Siniestros.A:C,3,FALSO)
+D2==BUSCARV(A2,Siniestros.A:H,8,FALSO)
+
+[Finanzas_Resumen]
+I1=Estado Pago
+J1=Total($)
+K1=Cantidad
+
+I2=Pagado
+J2==SUMAR.SI(G:G,"Pagado",E:E)
+K2==CONTAR.SI(G:G,"Pagado")
+
+I3=Pendiente
+J3==SUMAR.SI(G:G,"Pendiente",E:E)
+K3==CONTAR.SI(G:G,"Pendiente")
+
+I4=Por Generar
+J4==SUMAR.SI(G:G,"Por Generar",E:E)
+K4==CONTAR.SI(G:G,"Por Generar")
+
+I5=TOTAL GENERAL
+J5==SUMA(J2:J4)
+K5==SUMA(K2:K4)
+
+; ========================================
+; HOJA 6: FICHA CONSULTA
+; ========================================
+
+[Ficha_Consulta_Headers]
+A1=FICHA DE CONSULTA
+B2=Seleccionar Siniestro:
+
+[Ficha_Consulta_Datos]
+A4=Datos del Siniestro
+A5=Asegurado
+B5==BUSCARV(B2,Siniestros.A:B,2,FALSO)
+A6=Compañía
+B6==BUSCARV(B2,Siniestros.A:C,3,FALSO)
+A7=Localidad
+B7==BUSCARV(B2,Siniestros.A:D,4,FALSO)
+A8=Fecha Siniestro
+B8==BUSCARV(B2,Siniestros.A:E,5,FALSO)
+A9=Estado Actual
+B9==BUSCARV(B2,Siniestros.A:H,8,FALSO)
+A10=Tarea Pendiente
+B10==BUSCARV(B2,Siniestros.A:G,7,FALSO)
+A11=Prioridad
+B11==BUSCARV(B2,Siniestros.A:I,9,FALSO)
+A12=Fecha Límite
+B12==BUSCARV(B2,Siniestros.A:K,11,FALSO)
+
+A14=HISTORIAL DE GESTIONES
+A16==FILTRAR(Seguimiento.A:H,Seguimiento.A:A=B2,"Sin gestiones registradas")
+
+; ========================================
+; HOJA 7: LISTAS
+; ========================================
+
+[Listas_Data]
+A1=COMPAÑÍAS
+B1=LOCALIDADES
+C1=TAREAS
+D1=ESTADOS SINIESTRO
+E1=PRIORIDAD
+F1=RESPONSABLES
+G1=ESTADOS VISITA
+H1=ESTADO PAGO
+
+A2=AXA
+A3=Zurich
+A4=Allianz
+A5=Mapfre
+
+B2=Buenos Aires
+B3=Córdoba
+B4=Rosario
+B5=Mendoza
+B6=La Plata
+
+C2=Pendiente contacto
+C3=Contactado
+C4=Coordinar visita
+C5=Visitar asegurado
+C6=Cargar informe
+C7=Informe elevado
+C8=Retiro de denuncia
+C9=Pendientes de datos
+C10=Otra tarea
+
+D2=Pendiente análisis
+D3=Contactar
+D4=Aguardamos respuestas
+D5=Coordinar visita
+D6=Con visita pactada
+D7=Pendientes de datos
+D8=Cargar informe
+D9=Informes elevados
+D10=Retiro denuncia
+D11=Cerrados
+
+E2=Alta
+E3=Media
+E4=Baja
+
+F2=Joel
+
+G2=Pactada
+G3=Realizada
+G4=Reprogramada
+G5=Cancelada
+G6=No realizada
+
+H2=Pagado
+H3=Pendiente
+H4=Por Generar
