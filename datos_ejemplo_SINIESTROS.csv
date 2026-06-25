@@ -1,0 +1,4 @@
+ID Siniestro,Asegurado,Compañía,Localidad,Fecha Siniestro,Fecha Ingreso,Tarea a Realizar,Estado,Prioridad,Responsable,Fecha Límite,Días Pendientes,Comentarios
+1001,Juan Pérez,AXA,Buenos Aires,15/06/2026,18/06/2026,Coordinar visita,Con visita pactada,Alta,Joel,25/06/2026,=SI(H2="Cerrados";"";K2-HOY()),Cliente disponible
+1002,María López,Zurich,Córdoba,10/06/2026,12/06/2026,Cargar informe,Pendientes datos,Media,Joel,30/06/2026,=SI(H3="Cerrados";"";K3-HOY()),Esperando documentos
+1003,Carlos Gómez,Allianz,Rosario,20/06/2026,20/06/2026,Pendiente contacto,Pendiente análisis,Baja,Joel,05/07/2026,=SI(H4="Cerrados";"";K4-HOY()),Ingreso inicial
